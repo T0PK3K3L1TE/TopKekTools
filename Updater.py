@@ -48,6 +48,9 @@ def Main():
         print bcolors.WARNING + "Attempting Package Install..."
         os.system("python install.py")
         print bcolors.OKGREEN + "Update Finished..."
+        print bcolors.WARNING + "Deleting Update File..."
+        os.system("rm -r Update")
+        print bcolors.OKBLUE  + "Finished Exiting..."
         sys.exit(1)
 
     elif update == False:
