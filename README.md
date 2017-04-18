@@ -7,7 +7,8 @@ this program also will allow for a simple beginner user interface for the follow
     Word List Generation - Through Crunch
     Network Sniffing     - Through Bettercap
     
-Update Pakages Will Be Uploaded At https://github.com/T0PK3K3L1TE/TopKekTools/
 
 Dependency Links:
 https://github.com/AlisamTechnology/ATSCAN
+
+[NOTE]:Update 0.0.7 Has A Version.txt Error Were It Will Not Update Edit It To 0.0.7
