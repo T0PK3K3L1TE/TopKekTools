@@ -37,6 +37,9 @@ def Main():
 
         current_version.close()
         os.chdir("Updates")
+        externaldir = open("dir.txt", "w")
+        externaldir.write(str(home))
+        externaldir.close()
         os.system("wget https://raw.githubusercontent.com/T0PK3K3L1TE/TKTUpdates/master/Version.txt")
         update_version = open("Version.txt", "r")
         for line in update_version:
@@ -55,10 +58,14 @@ def Main():
             os.system("python UpdateDependencies.py")
             os.system("rm Version.txt")
             os.system("rm UpdateDependencies.py")
+            os.system("rm install.py")
             sys.exit(1)
 
     elif update == False:
         os.system("make Updates")
+        externaldir = open("dir.txt", "r")
+        externaldir.write(os.getcwd())
+        externaldir.close()
         Main()
 
     else:
