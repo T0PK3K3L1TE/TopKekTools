@@ -107,7 +107,7 @@ stringset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 def atscan_Run():
     global home
     os.chdir("Assets")
-    os.system("python Atscan_UserFriendly.py")
+    os.system("python Atscan_UF005alpha.py")
     os.chdir(home)
     Running()
 
