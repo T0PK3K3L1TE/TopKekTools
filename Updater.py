@@ -29,33 +29,37 @@ def Main():
 
     global Banner
     print Banner
-    print bcolors.HEADER + "Attempting To Locate Update Package '"+os.getcwd()+"/Update'... "
-    update = os.path.exists("Update")
+    update = os.path.exists("Updates")
     if update == True:
-        os.chdir("Update")
-        print bcolors.OKBLUE + "Successfull Checking For Package Version..."
-        version_io = open("Version.txt", "r")
-        for line in version_io:
-            version = line
+        current_version = open("Version.txt", "r")
+        for line in current_version:
+            cversion = line
 
-        version_io.close()
-        print bcolors.OKGREEN + "Version: "+str(version)
-        print bcolors.OKBLUE + "Creating Install Assets..."
-        tempdir = open("dir1.txt", "w")
-        tempdir.write(home)
-        tempdir.close()
-        print bcolors.OKGREEN + "Created..."
-        print bcolors.WARNING + "Attempting Package Install..."
-        os.system("python install.py")
-        print bcolors.OKGREEN + "Update Finished..."
-        print bcolors.WARNING + "Deleting Update File..."
-        os.system("rm -r Update")
-        print bcolors.OKBLUE  + "Finished Exiting..."
-        sys.exit(1)
+        current_version.close()
+        os.chdir("Updates")
+        os.system("wget https://raw.githubusercontent.com/T0PK3K3L1TE/TKTUpdates/master/Version.txt")
+        update_version = open("Version.txt", "r")
+        for line in update_version:
+            uversion = line
+
+        update_version.close()
+        if str(cversion) == str(uversion):
+            print bcolors.OKGREEN+"Version: "+str(cversion)
+            print "Everything Up To Date"
+            os.system("rm Version.txt")
+            sys.exit(1)
+
+        else:
+            print bcolors.FAIL+"Checking For Possible Update Files."
+            os.system("wget https://raw.githubusercontent.com/T0PK3K3L1TE/TKTUpdates/master/UpdateDependencies.py")
+            os.system("python UpdateDependencies.py")
+            os.system("rm Version.txt")
+            os.system("rm UpdateDependencies.py")
+            sys.exit(1)
 
     elif update == False:
-        print bcolors.FAIL + "Could Not locate File"
-        sys.exit(1)
+        os.system("make Updates")
+        Main()
 
     else:
         print bcolors.WARNING + "Operation Failed"
