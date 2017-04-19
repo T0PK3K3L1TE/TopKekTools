@@ -62,7 +62,7 @@ def Main():
             sys.exit(1)
 
     elif update == False:
-        os.system("make Updates")
+        os.mkdir("Updates")
         externaldir = open("dir.txt", "r")
         externaldir.write(os.getcwd())
         externaldir.close()
